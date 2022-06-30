@@ -10,9 +10,53 @@ $(document).ready(item => {
 });
 
 function copyValueToClipBoard() {
-    navigator.clipboard.writeText(generatedValue);
-    alert('Copiado! Aumente suas vendas...');
+    copyToClipboard(generatedValue);
+    alert('Copiado!');
 }
+
+function copyToClipboard(string) {
+    let textarea;
+    let result;
+  
+    try {
+      textarea = document.createElement('textarea');
+      textarea.setAttribute('readonly', true);
+      textarea.setAttribute('contenteditable', true);
+      textarea.style.position = 'fixed'; // prevent scroll from jumping to the bottom when focus is set.
+      textarea.value = string;
+  
+      document.body.appendChild(textarea);
+  
+      textarea.focus();
+      textarea.select();
+  
+      const range = document.createRange();
+      range.selectNodeContents(textarea);
+  
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+  
+      textarea.setSelectionRange(0, textarea.value.length);
+      result = document.execCommand('copy');
+    } catch (err) {
+      console.error(err);
+      result = null;
+    } finally {
+      document.body.removeChild(textarea);
+    }
+  
+    // manual copy fallback using prompt
+    if (!result) {
+      const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+      const copyHotkey = isMac ? '⌘C' : 'CTRL+C';
+      result = prompt(`Press ${copyHotkey}`, string); // eslint-disable-line no-alert
+      if (!result) {
+        return false;
+      }
+    }
+    return true;
+  }
 
 function generateLink() {
     generatedValue = '';
@@ -23,6 +67,8 @@ function generateLink() {
         alert("O campo número e mensagem não deve ser vazio");
         return;
     }
+
+    message = message.split(' ').join('%20');
 
     generatedValue = `https://api.whatsapp.com/send?phone=55${number}&text=${message}`;
 
