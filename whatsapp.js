@@ -1,12 +1,21 @@
 var generatedValue = '';
 
 $(document).ready(item => {
+    let elementNumber = document.getElementById('number');
+    var maskOptions = {
+        mask: '+{55} (00) 00000-0000'
+    };
+    var mask = IMask(elementNumber, maskOptions);
+
     $("#generate-btn").click(() => {
         generateLink();
     });
     $("#copy-to-clipboard").click(() => {
         copyValueToClipBoard();
     }); 
+    $('#redirect').click(() => {
+        window.location.href = generatedValue;
+    });
 });
 
 function copyValueToClipBoard() {
@@ -72,6 +81,7 @@ function generateLink() {
 
     generatedValue = `https://api.whatsapp.com/send?phone=55${number}&text=${message}`;
 
-    $("#generated-value-text").html(generatedValue);
-    $("#generated-value").css("display", "block");
+    // $("#generated-value-text").html(`<a target="_blank" href=${generatedValue}>${generatedValue}<a>`);
+    $("#generated-value-text").html(`${generatedValue}`);
+    $(".display-box").css("display", "block");
 }

@@ -89,10 +89,14 @@
       .item-input-generate {
         margin-top: 30px;
       }
-      #generated-value {
+
+      .display-box {
+        display: none;
+      }
+
+      .generated-value-box {
         border: 1px solid #ced4da;
         padding: 10px;
-        display: none;
       }
       .dark-btn-copy {
         background: #212529;
@@ -137,30 +141,35 @@
     <!-- Begin page content -->
     <main class="flex-shrink-0">
       <div class="container container-generate">
-        
         <form class="form">
-          <!--<label for="numero" class="form__label form__label--numero">
-           Número do celular
-          <input type="text" placeholder="(DDD) 0 0000-0000" id="numero" class="form__input"></label> <input type="text" class="input-hidden"></div> <div class="form__control"><label for="mensagem" class="form__label form__label--mensagem">Mensagem
-          <input type="text" placeholder="Escreva o texto" id="mensagem" class="form__input"></label></div> <button type="submit" class="form__submit">Gerar Link</button> <a href="https://www.marketingwhats.com.br/?utm_source=Digital&amp;utm_medium=Start&amp;utm_campaign=Gerador" target="_blank" class="form__submit">Venda Mais com WhatsApp</a> <small class="tit-obs">Não guardamos nenhum dado informado.</small> -->
-          <div class="col col-md-6 item-input">
+          <div class="col col-md-12 item-input">
             <label for="exampleFormControlInput1" class="form-label">Número do celular</label>
-            <input type="number" class="form-control" id="number" placeholder="(DDD) 0 0000-0000">
+            <input type="text" class="form-control" id="number" placeholder="(DDD) 0 0000-0000">
           </div>
-          <div class="col col-md-6 item-input">
+          <div class="col col-md-12 item-input">
             <label for="exampleFormControlTextarea1" class="form-label">mensagem</label>
             <textarea class="form-control" id="message" rows="2"></textarea>
           </div>
-          <div class="col col-md-6 item-input-generate">
+          <div class="col col-md-12 item-input-generate">
             <button type="button" id="generate-btn" class="w-100 btn btn-lg btn-success">Gerar link</button>
           </div>
-          <div class="col col-md-6 item-input" id="generated-value">
-            <div class="row">
-              <div class="col" id="generated-value-text">
-                https://api.whatsapp.com/send?phone=55${number}&text=${message}
+          <div class="col col-md-12 display-box" id="generated-value">
+            <div class="container generated-value-box item-input">
+              <div class="row">
+                <div class="col" id="generated-value-text">
+                </div>
               </div>
-              <div class="col" style="margin-top: 10px;">
-                <button type="button" id="copy-to-clipboard" class="w-100 btn btn-lg-dark btn-dark dark-btn-copy">Copiar</button>
+            </div>
+            <div class="container generated-value-box item-input">
+              <div class="row">
+                <div class="col" style="margin-top: 10px;">
+                  <button type="button" id="copy-to-clipboard" class="w-100 btn btn-lg-dark btn-dark dark-btn-copy">Copiar</button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col" style="margin-top: 10px;">
+                  <button type="button" id="redirect" class="w-100 btn btn-lg-dark btn-primary">Redirecionar</button>
+                </div>
               </div>
             </div>
           </div>
@@ -174,6 +183,7 @@
       </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/imask"></script>
     <script src="whatsapp.js"></script>
     <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
   </body>
