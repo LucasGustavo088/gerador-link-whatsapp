@@ -1,11 +1,11 @@
 var generatedValue = '';
-
+var mask;
 $(document).ready(item => {
     let elementNumber = document.getElementById('number');
     var maskOptions = {
         mask: '+{55} (00) 00000-0000'
     };
-    var mask = IMask(elementNumber, maskOptions);
+    mask = IMask(elementNumber, maskOptions);
 
     $("#generate-btn").click(() => {
         generateLink();
@@ -14,9 +14,16 @@ $(document).ready(item => {
         copyValueToClipBoard();
     }); 
     $('#redirect').click(() => {
-        window.location.href = generatedValue;
+        redirectToLink();
     });
 });
+
+function redirectToLink() {
+    let a = document.createElement('a');
+    a.target = '_blank';
+    a.href = generatedValue;
+    a.click();
+}
 
 function copyValueToClipBoard() {
     copyToClipboard(generatedValue);
@@ -69,7 +76,7 @@ function copyToClipboard(string) {
 
 function generateLink() {
     generatedValue = '';
-    let number = $("#number").val();
+    let number = mask.unmaskedValue;
     let message = $("#message").val();
 
     if(number == null || message == null) {
@@ -79,7 +86,7 @@ function generateLink() {
 
     message = message.split(' ').join('%20');
 
-    generatedValue = `https://api.whatsapp.com/send?phone=55${number}&text=${message}`;
+    generatedValue = `https://api.whatsapp.com/send?phone=${number}&text=${message}`;
 
     // $("#generated-value-text").html(`<a target="_blank" href=${generatedValue}>${generatedValue}<a>`);
     $("#generated-value-text").html(`${generatedValue}`);
