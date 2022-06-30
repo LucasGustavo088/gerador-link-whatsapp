@@ -5,10 +5,14 @@ $(document).ready(item => {
         generateLink();
     });
     $("#copy-to-clipboard").click(() => {
-        navigator.clipboard.writeText(generatedValue);
-        alert('Copiado! Aumente suas vendas...')
+        copyValueToClipBoard();
     }); 
 });
+
+function copyValueToClipBoard() {
+    navigator.clipboard.writeText(generatedValue);
+    alert('Copiado! Aumente suas vendas...');
+}
 
 function generateLink() {
     generatedValue = '';
