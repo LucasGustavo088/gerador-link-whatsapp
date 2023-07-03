@@ -24,7 +24,7 @@
     <meta name="description" content="">
     <meta name="author" content="Lucas Gustavo Barbosa">
     <meta name="generator" content="Hugo 0.98.0">
-    <title>Gerador de Link para Whatsapp!</title>    
+    <title>Inicie conversas no whatsapp sem adicionar aos contatos</title>    
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sticky-footer-navbar/">
     <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -106,6 +106,29 @@
     <link href="sticky-footer-navbar.css" rel="stylesheet">
   </head>
   <body class="d-flex flex-column h-100">
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyAInP1MB3O9lfmqDEf6IzbHcGfvXD9qr7A",
+        authDomain: "gerador-whatsapp.firebaseapp.com",
+        projectId: "gerador-whatsapp",
+        storageBucket: "gerador-whatsapp.appspot.com",
+        messagingSenderId: "952691163537",
+        appId: "1:952691163537:web:f2ff9da2f9e145b3dd9a30",
+        measurementId: "G-DTDCSM84ZB"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    </script>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NRCN7HV"
       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -121,7 +144,7 @@
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Gerar link para whatsapp</a>
+                <a class="nav-link active" aria-current="page" href="#">Inicie conversas no whatsapp sem adicionar aos contatos</a>
               </li>
               <!-- <li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
